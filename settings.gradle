@@ -1,0 +1,2 @@
+rootProject.name='IoT_Error_Scanner_Grp1'
+include ':app'
