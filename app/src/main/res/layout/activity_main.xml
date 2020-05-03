@@ -6,25 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <Button
         android:id="@+id/buttonToScan"
-        android:layout_width="413dp"
-        android:layout_height="52dp"
+        android:layout_width="290dp"
+        android:layout_height="66dp"
         android:text="Scan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.805" />
+        app:layout_constraintVertical_bias="0.84"/>
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="409dp"
+    <TextView
+        android:text="hello"
+        android:gravity="center"
+        android:id="@+id/resultTextView"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/buttonToScan"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonToScan" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
