@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="192.168.178.69"
+        android:textSize="30dp"
+        android:padding="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonToScan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/backendIpTextView">
+
+    </EditText>
+
     <Button
         android:id="@+id/buttonToScan"
         android:layout_width="290dp"
