@@ -52,6 +52,20 @@ public class MainActivity extends AppCompatActivity {
     // 200 is usage permission code
     public static final int PERMISSION_REQUEST = 200;
 
+    public static String getNumber(String qrString) {
+        String[] parts = qrString.split("\n");
+        parts = parts[0].split(" ");
+        return parts[1];
+    }
+
+    public static String getColor(String qrString) {
+        String[] parts = qrString.split("\n");
+        parts = parts[1].split(" ");
+        return parts[1];
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,15 +98,18 @@ public class MainActivity extends AppCompatActivity {
 
         TVbackendIP = findViewById(R.id.backendIpTextView);
         Editable editableURL = TVbackendIP.getText();
-        String baseURL = editableURL.toString();
+        final String baseURL = editableURL.toString();
 
         if (data != null)  {
             final Barcode barcode = data.getParcelableExtra("barcode");
 
-            // HTTP request starts
-            String json = "{\"id\":1,\"error\":\"" + barcode.displayValue + "\"}";
+            String qrToParse = barcode.displayValue.replaceAll("(\\r)", "");
+            final String number = getNumber(qrToParse);
+            final String color = getColor(qrToParse);
 
-            Log.d("MYURL", URL_FRONT + baseURL + PORT + URL_EXTENSION);
+            final String json = "{\"number\":\"" + number + "\",\"color\":\"" + color + "\"" + ",\"is_first\":\"true\"}";
+
+
             OkHttpClient httpClient = new OkHttpClient();
 
             RequestBody body = RequestBody.create(
@@ -106,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
             httpClient.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(@NotNull Call call, @NotNull final IOException e) {
-
                     Log.d("HTTP_CONN", e.toString());
                 }
                 @Override
@@ -115,10 +131,22 @@ public class MainActivity extends AppCompatActivity {
                     String jsonData = response.body().string();
                     try {
                         JSONObject jsonObject = new JSONObject(jsonData);
-                        if (jsonObject.getBoolean("processed")) {
-                            TVresult.setText(jsonObject.getString("msg"));
+
+                        if (jsonObject.getBoolean("request_ok")) {
+
+                            Intent toPopupActivity = new Intent(MainActivity.this, PopupActivity.class);
+                            String solution = jsonObject.getString("possible_solution");
+                            toPopupActivity.putExtra("solution", solution);
+                            toPopupActivity.putExtra("number", number);
+                            toPopupActivity.putExtra("color", color);
+
+                            toPopupActivity.putExtra("URL_FRONT", URL_FRONT);
+                            toPopupActivity.putExtra("baseURL", baseURL);
+                            toPopupActivity.putExtra("PORT", PORT);
+                            toPopupActivity.putExtra("URL_EXTENSION", URL_EXTENSION);
+                            startActivity(toPopupActivity);
                         }
-                        Log.d("HTTP_CONN", jsonObject.getString("msg"));
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
