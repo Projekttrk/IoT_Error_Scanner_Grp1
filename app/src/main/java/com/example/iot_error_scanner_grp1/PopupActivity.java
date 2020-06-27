@@ -75,7 +75,6 @@ public class PopupActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull final Response response) throws IOException {
-
                         String jsonData = response.body().string();
                         try {
                             JSONObject jsonObject = new JSONObject(jsonData);
@@ -97,7 +96,7 @@ public class PopupActivity extends AppCompatActivity {
         furtherHelpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String json = "{\"number\":\"" + number + "\",\"color\":\"" + color + "\"" + ",\"is_first\":\"false\"}";
+                String json = "{\"number\":\"" + number + "\",\"color\":\"" + color + "\"" + ",\"is_first\":false}";
 
                 OkHttpClient httpClient = new OkHttpClient();
 
