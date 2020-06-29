@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnToScan = findViewById(R.id.buttonToScan);
-        TVresult  = findViewById(R.id.resultTextView);
 
 
 
@@ -136,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
 
                             Intent toPopupActivity = new Intent(MainActivity.this, PopupActivity.class);
                             String solution = jsonObject.getString("possible_solution");
+                            String errorDescription = jsonObject.getString("error_description");
+
+                            toPopupActivity.putExtra("errorDescription", errorDescription);
                             toPopupActivity.putExtra("solution", solution);
                             toPopupActivity.putExtra("number", number);
                             toPopupActivity.putExtra("color", color);

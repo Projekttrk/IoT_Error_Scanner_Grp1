@@ -42,8 +42,20 @@
         android:textSize="24dp"
         app:layout_constraintBottom_toTopOf="@+id/furtherHelpButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.326" />
+        app:layout_constraintVertical_bias="0.934" />
+
+    <TextView
+        android:id="@+id/problemTV"
+        android:layout_width="336dp"
+        android:layout_height="116dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/solutionTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

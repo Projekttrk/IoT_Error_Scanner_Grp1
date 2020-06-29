@@ -28,6 +28,7 @@ import okhttp3.Response;
 public class PopupActivity extends AppCompatActivity {
 
     TextView possibleSolutionTV;
+    TextView problemTV;
     Button solvedButton;
     Button furtherHelpButton;
 
@@ -37,7 +38,10 @@ public class PopupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_popup);
 
         possibleSolutionTV = findViewById(R.id.solutionTV);
-        String possibleSolution = getIntent().getStringExtra("solution");
+        problemTV = findViewById(R.id.problemTV);
+
+        final String problemText = getIntent().getStringExtra("errorDescription");
+        final String possibleSolution = getIntent().getStringExtra("solution");
         final String number = getIntent().getStringExtra("number");
         final String color = getIntent().getStringExtra("color");
 
@@ -48,6 +52,8 @@ public class PopupActivity extends AppCompatActivity {
         final String URL_EXTENSION = getIntent().getStringExtra("URL_EXTENSION");
 
         possibleSolutionTV.setText(possibleSolution);
+        problemTV.setText("Problem: " + problemText);
+
 
         solvedButton = findViewById(R.id.solvedButton);
         furtherHelpButton = findViewById(R.id.furtherHelpButton);
